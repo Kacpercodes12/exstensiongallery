@@ -1,209 +1,86 @@
-// Name: Search Params
-// ID: zxmushroom63searchparams
-// Description: Interact with URL search parameters: the part of the URL after a question mark.
-// By: ZXMushroom63
-// License: MIT
-
-(function (Scratch) {
-  "use strict";
-  if (!Scratch.extensions.unsandboxed) {
-    throw new Error("SearchParams must be run unsandboxed.");
-  }
-
-  class SearchApi {
+const icon = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAsMCwyMjUuMzU0OCwyMjUuMzU0OCIgaGVpZ2h0PSIyMjUuMzU0OCIgd2lkdGg9IjIyNS4zNTQ4Ij48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9PC9zdHlsZT48L2RlZnM+PGcgaWQ9IuWbvuWxgl8yIiBkYXRhLW5hbWU9IuWbvuWxgiAyIj48ZyBpZD0iRGlzY29yZF9Mb2dvcyIgZGF0YS1uYW1lPSJEaXNjb3JkIExvZ29zIj48ZyBpZD0iRGlzY29yZF9Mb2dvXy1fTGFyZ2VfLV9XaGl0ZSIgZGF0YS1uYW1lPSJEaXNjb3JkIExvZ28gLSBMYXJnZSAtIFdoaXRlIj48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xOTAuODk4IDE0LjMwNEExODYuMzc4IDE4Ni4zNzggMCAwIDAgMTQ0LjQwNSAwYTEyNy43MjYgMTI3LjcyNiAwIDAgMCAtNS45NTYgMTIuMTA2QTE3My4xMzcgMTczLjEzNyAwIDAgMCA4Ni44NTIgMTIuMTA2IDEyOC4yNzUgMTI4LjI3NSAwIDAgMCA4MC44OTcgMCAxODcuNjg5IDE4Ny42ODkgMCAwIDAgMzQuMzY5IDE0LjMzOUM0Ljk0NSA1Ny44NzIgLTMuMDMxIDEwMC4zMjMgMC45NTcgMTQyLjE3MmgwQTE4Ny40MDYgMTg3LjQwNiAwIDAgMCA1Ny45NzggMTcwLjc5NyAxMzcuNzIzIDEzNy43MjMgMCAwIDAgNzAuMTkxIDE1MS4xMDVhMTIxLjI3NCAxMjEuMjc0IDAgMCAxIC0xOS4yMzIgLTkuMTgyYzEuNjEzIC0xLjE3IDMuMTkgLTIuMzc1IDQuNzE1IC0zLjU0NWExMzMuOTQ3IDEzMy45NDcgMCAwIDAgMTE0LjAwNyAwYzEuNTQyIDEuMjU4IDMuMTIgMi40NjQgNC43MTUgMy41NDVhMTIxLjczNSAxMjEuNzM1IDAgMCAxIC0xOS4yNjcgOS4xOTkgMTM2LjQ4MiAxMzYuNDgyIDAgMCAwIDEyLjIxMiAxOS42NzVBMTg2LjU1NSAxODYuNTU1IDAgMCAwIDIyNC4zOTggMTQyLjE4OWgwQzIyOS4wNzcgOTMuNjU5IDIxNi40MDQgNTEuNTk3IDE5MC44OTggMTQuMzA0Wk03NS4yNDIgMTE2LjQzNUM2NC4xMjkgMTE2LjQzNSA1NC45NDcgMTA2LjM1IDU0Ljk0NyA5My45NDJzOC44NjIgLTIyLjU4MiAyMC4yNiAtMjIuNTgyUzk1LjcxNSA4MS41MzUgOTUuNTIgOTMuOTQyIDg2LjU2OSAxMTYuNDM1IDc1LjI0MiAxMTYuNDM1Wm03NC44NyAwQzEzOC45ODEgMTE2LjQzNSAxMjkuODM1IDEwNi4zNSAxMjkuODM1IDkzLjk0MnM4Ljg2MiAtMjIuNTgyIDIwLjI3NyAtMjIuNTgyUzE3MC41NjcgODEuNTM1IDE3MC4zNzIgOTMuOTQyIDE2MS40MzkgMTE2LjQzNSAxNTAuMTEyIDExNi40MzVaIi8+PC9nPjwvZz48L2c+PC9zdmc+';
+  class Discord {
     getInfo() {
       return {
-        id: "zxmushroom63searchparams",
-        name: Scratch.translate("Search Params"),
-        color1: "#b4b4b4",
-        color2: "#9c9c9c",
-        color3: "#646464",
+
+        id: 'Discord',
+        name: 'Discord',
+
+        color1: '#5865F2',
+        color2: '#57F287',
+        color3: '#FEE75C',
+
+        menuIconURI: icon,
+
         blocks: [
           {
-            opcode: "searchparam",
-            blockType: Scratch.BlockType.REPORTER,
-            text: Scratch.translate("value of search parameter [ID]"),
-            arguments: {
-              ID: {
-                type: Scratch.ArgumentType.STRING,
-                defaultValue: "x",
-              },
-            },
-          },
-          {
-            opcode: "occurencesofsearchparam",
-            blockType: Scratch.BlockType.REPORTER,
-            text: Scratch.translate("occurrences of search parameter [ID]"),
-            arguments: {
-              ID: {
-                type: Scratch.ArgumentType.STRING,
-                defaultValue: "x",
-              },
-            },
-          },
-          {
-            opcode: "indexedsearchparam",
-            blockType: Scratch.BlockType.REPORTER,
-            text: Scratch.translate("index [I] of search parameters [ID]"),
-            arguments: {
-              ID: {
-                type: Scratch.ArgumentType.STRING,
-                defaultValue: "x",
-              },
-              I: {
-                type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 1,
-              },
-            },
-          },
-          {
-            opcode: "setsearchparam",
+            opcode: 'send_message_block',
             blockType: Scratch.BlockType.COMMAND,
-            text: Scratch.translate("set search parameter [ID] to [VAL]"),
+            text: 'send message [MESSAGE] as [USERNAME] webhook url: [WEBHOOK_URL]',
             arguments: {
-              ID: {
+              MESSAGE: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "x",
+                defaultValue: 'Text send from TurboWarp!'
               },
-              VAL: {
+              USERNAME:{
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "15",
+                defaultValue: 'TurboWarp Bot'
               },
-            },
+              WEBHOOK_URL: {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: 'https://discord.com/api/webhooks/'
+              }
+            }
           },
           {
-            opcode: "deletesearchparam",
+            opcode: 'send_json_block',
             blockType: Scratch.BlockType.COMMAND,
-            text: Scratch.translate("delete search parameter [ID]"),
+            text: 'send json [JSON_DATA] webhook url: [WEBHOOK_URL]',
             arguments: {
-              ID: {
+              JSON_DATA: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "x",
+                defaultValue: '{"content": "Text send from TurboWarp!","embeds": null,"attachments": []}'
               },
-            },
-          },
-          {
-            opcode: "appendsearchparam",
-            blockType: Scratch.BlockType.COMMAND,
-            text: Scratch.translate(
-              "append search parameter [ID] with value [VAL]"
-            ),
-            arguments: {
-              ID: {
+              WEBHOOK_URL: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "x",
-              },
-              VAL: {
-                type: Scratch.ArgumentType.STRING,
-                defaultValue: "15",
-              },
-            },
-          },
-          {
-            opcode: "hassearchparam",
-            blockType: Scratch.BlockType.BOOLEAN,
-            text: Scratch.translate("has search parameter [ID]?"),
-            arguments: {
-              ID: {
-                type: Scratch.ArgumentType.STRING,
-                defaultValue: "x",
-              },
-            },
-          },
-          {
-            opcode: "searchparamslength",
-            blockType: Scratch.BlockType.REPORTER,
-            text: Scratch.translate("length of search parameters"),
-          },
-          {
-            opcode: "searchparamatindex",
-            blockType: Scratch.BlockType.REPORTER,
-            text: Scratch.translate("search parameter [PARAM] at index [I]"),
-            arguments: {
-              PARAM: {
-                type: Scratch.ArgumentType.STRING,
-                menu: "PARAM",
-              },
-              I: {
-                type: Scratch.ArgumentType.NUMBER,
-                defaultValue: 1,
-              },
-            },
-          },
-        ],
-        menus: {
-          PARAM: {
-            acceptReporters: true,
-            items: [
-              { text: Scratch.translate("value"), value: "value" },
-              { text: Scratch.translate("name"), value: "name" },
-            ],
-          },
-        },
-      };
-    }
-
-    searchparam({ ID }) {
-      return new URLSearchParams(location.search).get(ID.toString()) || "";
-    }
-
-    occurencesofsearchparam({ ID }) {
-      return (
-        new URLSearchParams(location.search).getAll(ID.toString()).length || 0
-      );
-    }
-
-    indexedsearchparam({ ID, I }) {
-      return (
-        new URLSearchParams(location.search).getAll(ID.toString())[
-          parseInt(I) - 1
-        ] || ""
-      );
-    }
-
-    setsearchparam({ ID, VAL }) {
-      var s = new URLSearchParams(location.search);
-      s.set(ID.toString(), VAL.toString());
-      history.replaceState("", "", "?" + s.toString());
-    }
-
-    searchparamslength() {
-      var s = new URLSearchParams(location.search);
-      // @ts-ignore
-      return typeof s.size !== "object" ? s.size : 0;
-    }
-
-    deletesearchparam({ ID }) {
-      var s = new URLSearchParams(location.search);
-      s.delete(ID.toString());
-      history.replaceState("", "", "?" + s.toString());
-    }
-
-    appendsearchparam({ ID, VAL }) {
-      var s = new URLSearchParams(location.search);
-      s.append(ID.toString(), VAL.toString());
-      history.replaceState("", "", "?" + s.toString());
-    }
-
-    hassearchparam({ ID }) {
-      var s = new URLSearchParams(location.search);
-      return s.has(ID.toString()) || false;
-    }
-
-    searchparamatindex({ PARAM, I }) {
-      var index = parseInt(I) - 1 || 0;
-      index = Math.max(0, index);
-      var s = new URLSearchParams(location.search);
-      var values = PARAM.toString() === "value" ? s.values() : s.keys();
-      var i = 0;
-      for (const value of values) {
-        if (i === index) {
-          return value;
-        }
-        i++;
+                defaultValue: 'https://discord.com/api/webhooks/'
+              }
+             }
+            }
+        ]
       }
-      return "";
+
     }
-  }
-  Scratch.extensions.register(new SearchApi());
-})(Scratch);
+    send_message_block({MESSAGE,USERNAME,WEBHOOK_URL}){
+        var json_data = {
+            username: USERNAME,
+            avatar_url: "",
+            content: MESSAGE
+        }
+      try {return fetch(WEBHOOK_URL, {
+            method: "POST",
+            headers: {
+              'Content-type': 'application/json'
+            },
+            body: JSON.stringify(json_data)
+          }).then(res => {
+            console.log(res);
+          })
+      }
+    catch(err) {}
+    }
+    send_json_block({JSON_DATA,WEBHOOK_URL}){
+      try {return fetch(WEBHOOK_URL, {
+            method: "POST",
+            headers: {
+              'Content-type': 'application/json'
+            },
+            body: (JSON_DATA)
+          }).then(res => {
+            console.log(res);
+          })
+      }
+    catch(err) {}
+    }
+}
+Scratch.extensions.register(new Discord());
